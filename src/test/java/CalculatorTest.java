@@ -47,4 +47,9 @@ public class CalculatorTest {
         final long result = new Calculator().multiply(3, -3);
         assertEquals(result, -9);
     }
+    @Test
+    public void threeXMinusTwoIsMinusSix() throws Exception {
+        final long result = new Calculator().multiply(3, -2);
+        assertEquals(result, -6);
+    }
 }
