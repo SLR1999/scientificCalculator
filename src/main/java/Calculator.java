@@ -1,5 +1,7 @@
 import java.lang.*;
 import java.util.*;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class Calculator {
 
@@ -16,6 +18,7 @@ public class Calculator {
     }
 
     public long add(long first, long second) {
+        logger.info("Executing addition");
         return first + second;
     }
 
@@ -57,6 +60,7 @@ public class Calculator {
                 break;
         }
     }
+    private static final Logger logger = LogManager.getLogger(Calculator.class);
     public static void main (String[] args)
     {
         System.out.println("What operation? ('+', '-', '*', '/')");
