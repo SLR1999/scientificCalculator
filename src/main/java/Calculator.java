@@ -32,7 +32,7 @@ public class Calculator {
     }
 
     public void calc(int ops){
-        x = 4;
+        x = 5;
         System.out.println("operand 2: ");
         y = 5;
 
