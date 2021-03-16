@@ -17,59 +17,103 @@ public class Calculator {
         Scanner operands = new Scanner(System.in);
     }
 
-    public long add(long first, long second) {
-        logger.info("Executing addition");
-        return first + second;
+    public static double squareRoot(double num) {
+        logger.info("Executing square root function for " + num);
+        double ans = Math.sqrt(num);
+        return ans;
     }
 
-    public long subtract(long first, long second) {
-        return first - second;
+    public static int factorial(int num) {
+        int ans = num;
+        logger.info("Executing factorial function for " + num);
+        for (int i = num-1; i >= 1; i --)
+        {
+            ans = ans*i;
+        }
+        return ans;
     }
 
-    public long multiply(long first, long second) {
-        return first * second;
+    public static double naturalLog(double num) {
+        logger.info("Executing natural logarithm function for " + num);
+        double ans = Math.log(num);
+        return ans;
     }
 
-    public long divide(long first, long second) {
-        return first / second;
+    public static double pow(double num, double exponent) {
+        logger.info("Executing power function for " + num);
+        double ans = Math.pow(num, exponent);
+        return ans;
     }
 
-    public void calc(int ops){
-        x = 5;
-        System.out.println("operand 2: ");
-        y = 5;
+    public void calc(int ops, int num, double number, double exponent){
 
         switch(ops)
         {
             case(1):
-                System.out.println(add(x, y));
+                System.out.println(squareRoot(number));
 
-                //    operands.next();
                 break;
             case(2):
-                System.out.println(subtract(x, y));
-                // operands.next();
+                System.out.println(factorial(num));
                 break;
             case(3):
-                System.out.println(multiply(x, y));
-                //  operands.next();
+                System.out.println(naturalLog(number));
                 break;
             case(4):
-                System.out.println(divide(x, y));
-                //  operands.next();
+                System.out.println(pow(number, exponent));
                 break;
         }
     }
     private static final Logger logger = LogManager.getLogger(Calculator.class);
     public static void main (String[] args)
     {
-        System.out.println("What operation? ('+', '-', '*', '/')");
-        System.out.println(" Enter 1 for Addition");
-        System.out.println(" Enter 2 for Subtraction");
-        System.out.println(" Enter 3 for Multiplication");
-        System.out.println(" Enter 4 for Division");
-
         Calculator calc = new Calculator();
-        calc.calc(1);
+        Scanner scanner = new Scanner(System.in);
+        int num = 0;
+        double number = 0, exp = 0;
+        while(true)
+        {
+            System.out.println("What operation?");
+            System.out.println(" Enter 1 for Square Root");
+            System.out.println(" Enter 2 Factorial");
+            System.out.println(" Enter 3 for Natural Logarithm");
+            System.out.println(" Enter 4 for Power Computation");
+            System.out.println(" Enter 5 to Exit");
+
+            int ops = scanner.nextInt();
+            if (ops == 5)
+            {
+                System.out.println("Quitting");
+                break;
+            }
+            else
+            {
+                if (ops == 1)
+                {
+                    System.out.println("Enter the value to compute square root for");
+                    number = scanner.nextDouble();
+                }
+                else if (ops == 2)
+                {
+                    System.out.println("Enter the value to compute factorial for");
+                    num = scanner.nextInt();
+                }
+                else if (ops == 3)
+                {
+                    System.out.println("Enter the value to compute logarithm for");
+                    number = scanner.nextDouble();
+                }
+                else if (ops == 5)
+                {
+                    System.out.println("Enter the value to compute power for");
+                    number = scanner.nextDouble();
+                    System.out.println("Enter the value of exponent to compute power for");
+                    exp = scanner.nextDouble();
+                }
+
+            }
+            calc.calc(ops, num, number, exp);
+        }
+
     }
 }
