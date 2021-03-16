@@ -103,7 +103,7 @@ public class Calculator {
                     System.out.println("Enter the value to compute logarithm for");
                     number = scanner.nextDouble();
                 }
-                else if (ops == 5)
+                else if (ops == 4)
                 {
                     System.out.println("Enter the value to compute power for");
                     number = scanner.nextDouble();
