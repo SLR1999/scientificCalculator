@@ -1,0 +1,40 @@
+pipeline {
+    environment {
+        dockerImage = ""
+    }
+    agent any 
+        stages {
+            stage('Step 1 Git Clone') {
+                steps {
+                    git branch: 'main', url: 'https://github.com/SLR1999/scientificCalculator.git'
+                }
+            }
+            stage('Step 2 Maven Install') {
+                steps {
+                    sh 'mvn clean package'
+                }
+            }
+            stage('Step 3 Build docker image') {
+                steps {
+                    script {
+                        dockerImage = docker.build "slr1999/scientific_calculator:latest"
+                    }
+                }
+            }
+            stage('Step 4 Push docker image to hub') {
+                steps {
+                    script {
+                        docker.withRegistry('', 'docker-id') {
+                            dockerImage.push()
+                        }
+                    }
+                }
+            }
+            stage('Step 5 Ansible') {
+                steps {
+                    ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'dockerDeployment/inventory', playbook: 'dockerDeployment/deployDocker.yml', sudoUser: null
+                    }
+            }
+        }
+    
+}
