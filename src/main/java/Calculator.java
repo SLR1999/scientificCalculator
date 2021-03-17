@@ -5,11 +5,6 @@ import org.apache.logging.log4j.LogManager;
 
 public class Calculator {
 
-    private int solution;
-    private int x;
-    private int y;
-    private char operators;
-
     public Calculator()
     {
         solution = 0;
